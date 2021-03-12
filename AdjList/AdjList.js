@@ -12,6 +12,19 @@ class AdjList extends Map {
     removeEdge(vertexID, edgeID) {
         this.get(vertexID).removeEdge(edgeID);
     }
+    static vertexFactory(list, vertices) {
+        for (let vertex of vertices) {
+            list.addVertex(vertex.payload, vertex.id);
+        }
+    }
+    ;
+    static edgeFactory(list, edges) {
+        for (let edge of edges) {
+            let [vertexID, edgeID] = edge;
+            list.addEdge(vertexID, edgeID);
+        }
+    }
+    ;
     bfs(startID, findID) {
         let visited = new Map();
         let queue = [];

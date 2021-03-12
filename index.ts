@@ -2,19 +2,6 @@ import {IAdjList, AdjList} from "./AdjList/AdjList";
 
 let list1: IAdjList = new AdjList();
 
-function vertexFactory(list: IAdjList, vertices: any[]){
-    for(let vertex of vertices){
-        list.addVertex(vertex.payload,vertex.id);
-    }
-};
-
-function edgeFactory(list: IAdjList, edges: any[]){
-    for(let edge of edges){
-        let [vertexID, edgeID] = edge;
-        list.addEdge(vertexID, edgeID);
-    }
-};
-
 let vertices = [
         {payload: {},id: "A"},
         {payload: {},id: "B"},
@@ -38,8 +25,8 @@ let edges = [
     ["F","G"]
 ];
 
-vertexFactory(list1,vertices);
-edgeFactory(list1, edges);
+AdjList.vertexFactory(list1,vertices);
+AdjList.edgeFactory(list1, edges);
 
 console.log(list1);
 console.log(list1.bfs("D", "H"));

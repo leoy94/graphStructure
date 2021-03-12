@@ -5,6 +5,7 @@ export interface IAdjList extends Map<string,IVertex>{
     addEdge: (vertexID: string, edgeID: string) => void;
     removeEdge: (vertexID: string, edgeID: string) => void;
     bfs: (startID: string, findID:string) => {length: number, path?: string[]};
+
 }
 
 export class AdjList extends Map implements IAdjList{
@@ -20,6 +21,19 @@ export class AdjList extends Map implements IAdjList{
     removeEdge(vertexID: string, edgeID: string){
         this.get(vertexID).removeEdge(edgeID);
     }
+
+    static vertexFactory(list: IAdjList, vertices: any[]){
+        for(let vertex of vertices){
+            list.addVertex(vertex.payload,vertex.id);
+        }
+    };
+
+    static edgeFactory(list: IAdjList, edges: any[]){
+        for(let edge of edges){
+            let [vertexID, edgeID] = edge;
+            list.addEdge(vertexID, edgeID);
+        }
+    };
 
     bfs(startID: string, findID:string){
         let visited = new Map();
