@@ -8,7 +8,7 @@ export interface IAdjList extends Map<string,IVertex>{
     dfs: (startID: string, findID:string) => {length: number, path?: string[]};
 
 
-    //Not yet configured
+    //to do
     biDir?: (startID: string, findID:string) => {length: number, path?: string[]};
 }
 
@@ -54,7 +54,9 @@ export class AdjList extends Map implements IAdjList{
 
             //get currentIndex and lastIndex if they exist
             let current, last;
-            [current, last] = queuedItem;
+            if(queuedItem){
+                [current, last] = queuedItem;
+            }
 
             //if the desired vertex is found print the path
             if(current == findID){
@@ -89,10 +91,13 @@ export class AdjList extends Map implements IAdjList{
         while(stack.length > 0){
             //dequeue last item
             let stackedItem = stack.pop();
+            console.log(stackedItem);
 
             //get currentIndex and lastIndex if they exist
             let current, last;
-            [current, last] = stackedItem;
+            if(stackedItem){
+                [current, last] = stackedItem;
+            }
 
             //if the desired vertex is found print the path
             if(current == findID){
@@ -115,6 +120,5 @@ export class AdjList extends Map implements IAdjList{
         }
         return {length: 0};
     }
-
 }
 

@@ -36,7 +36,9 @@ class AdjList extends Map {
             let queuedItem = queue.pop();
             //get currentIndex and lastIndex if they exist
             let current, last;
-            [current, last] = queuedItem;
+            if (queuedItem) {
+                [current, last] = queuedItem;
+            }
             //if the desired vertex is found print the path
             if (current == findID) {
                 let path = [current];
@@ -66,9 +68,12 @@ class AdjList extends Map {
         while (stack.length > 0) {
             //dequeue last item
             let stackedItem = stack.pop();
+            console.log(stackedItem);
             //get currentIndex and lastIndex if they exist
             let current, last;
-            [current, last] = stackedItem;
+            if (stackedItem) {
+                [current, last] = stackedItem;
+            }
             //if the desired vertex is found print the path
             if (current == findID) {
                 let path = [current];
